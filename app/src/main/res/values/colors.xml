@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#0E7A92</color>
+    <color name="colorPrimaryLight">#60348D9B</color>
+    <color name="colorPrimaryDark">#014764</color>
+    <color name="colorAccent">#278598</color>
+
+    <color name="success">#31c27c</color>
+    <color name="error">#e24044</color>
+    <color name="warning">#ff8800</color>
+
+
+    <!-- 主内容 -->
+    <color name="titleBarText">@android:color/white</color>
+    <color name="titleBarSubText">#ccffffff</color>
+    <color name="titleBarButtonText">@color/titleBarText</color>
+
+
+    <!-- 主内容 -->
+    <color name="contentPrimary">@android:color/black</color>
+    <!-- 次要内容 -->
+    <color name="contentSecondary">#888888</color>
+    <!-- 时间戳与表单缺省值 -->
+    <color name="light">#b2b2b2</color>
+    <!-- 大段的说明内容而且属于主要内容 -->
+    <color name="semi">#353535</color>
+
+    <color name="primary_btn_normal">#50218295</color>
+    <color name="primary_btn_press">#11218295</color>
+    <color name="primary_btn_disable">#11b2b2b2</color>
+
 </resources>

@@ -29,8 +29,8 @@ class PieView extends View implements Determinate {
     private Paint mWhitePaint;
     private Paint mGreyPaint;
     private RectF mBound;
-    private int mMax = 100;
-    private int mProgress = 0;
+    private long mMax = 100;
+    private long mProgress = 0;
 
     public PieView(Context context) {
         super(context);
@@ -84,14 +84,26 @@ class PieView extends View implements Determinate {
         setMeasuredDimension(dimension, dimension);
     }
 
+
     @Override
-    public void setMax(int max) {
+    public void setMax(long max) {
         this.mMax = max;
     }
 
     @Override
-    public void setProgress(int progress) {
+    public long getMax() {
+        return this.mMax;
+    }
+
+    @Override
+    public void setProgress(long progress) {
         this.mProgress = progress;
         invalidate();
     }
+
+    @Override
+    public long getProgress() {
+        return this.mProgress;
+    }
+
 }

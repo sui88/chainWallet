@@ -21,6 +21,7 @@ public class AppLogger {
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
+
     }
 
     public static void d(Object object){

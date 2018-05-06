@@ -27,7 +27,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation "com.android.support:design:27.1.1"
+    implementation "com.android.support:gridlayout-v7:27.1.1"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -59,4 +62,14 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.1'
     // If you want to use Android Lifecycle for providers
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.1'
+
+    // https://github.com/wuhenzhizao/android-titlebar
+    implementation 'com.wuhenzhizao:titlebar:1.0.7'
+
+    // https://github.com/Tapadoo/Alerter
+    implementation 'com.tapadoo.android:alerter:2.0.4'
+
+    // https://github.com/rengwuxian/MaterialEditText
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+
 }

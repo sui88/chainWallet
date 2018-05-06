@@ -30,8 +30,8 @@ class BarView extends View implements Determinate {
     private Paint mInnerPaint;
     private RectF mBound;
     private RectF mInBound;
-    private int mMax = 100;
-    private int mProgress = 0;
+    private long mMax = 100;
+    private long mProgress = 0;
     private float mBoundGap;
 
     public BarView(Context context) {
@@ -88,16 +88,29 @@ class BarView extends View implements Determinate {
         setMeasuredDimension(widthDimension, heightDimension);
     }
 
-    @Override
-    public void setMax(int max) {
-        this.mMax = max;
-    }
 
     @Override
-    public void setProgress(int progress) {
+    public void setProgress(long progress) {
         this.mProgress = progress;
         mInBound.set(mBoundGap, mBoundGap,
                 (getWidth() - mBoundGap) * mProgress / mMax, getHeight() - mBoundGap);
         invalidate();
     }
+
+    @Override
+    public void setMax(long max) {
+        this.mMax = max;
+    }
+
+    @Override
+    public long getMax() {
+        return this.mMax;
+    }
+
+
+    @Override
+    public long getProgress() {
+        return this.mProgress;
+    }
+
 }

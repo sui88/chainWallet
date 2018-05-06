@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">BlockChainWallet</string>
+
+    <string name="btn_confirm">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_yes">是</string>
+    <string name="btn_no">否</string>
+
+    <string name="login_app_title">chainWallet</string>
+    <string name="login_app_sub_title">四块科技专属智能钱包</string>
+    <string name="login_create_btn">创建钱包</string>
+    <string name="login_lead_btn">导入钱包</string>
+
+    <string name="create_tips">
+        \t\t* 密码用于保护私钥和交易授权，强度非重要。\n
+        \t\t* chainWallet不存储密码，也无法帮您找回，请务必牢记。
+    </string>
+    <string name="create_wallet_name">钱包名称</string>
+    <string name="create_wallet_password">密码</string>
+    <string name="create_wallet_password_rep">重复密码</string>
+    <string name="create_wallet_password_mess">密码提示信息(可不填)</string>
+    <string name="create_check_user_read">我已经仔细阅读同意</string>
+    <string name="create_user_service_clause">服务及隐私条款</string>
+    <string name="create_wallet_cre_btn">创建钱包</string>
+    <string name="create_wallet_lea_btn">导入钱包</string>
+
+    <string name="import_way_mnemonic">助记词</string>
+    <string name="import_way_key_store">官方钱包</string>
+    <string name="import_way_private_key">私钥</string>
+    <string name="import_way_observe">观察</string>
+
+    <string name="title_create_wallet">创建钱包</string>
+    <string name="title_import_wallet">导入钱包</string>
+
+    <string name="navigation_home">首页</string>
+    <string name="navigation_find">发现</string>
+    <string name="navigation_user">用户</string>
+
 </resources>

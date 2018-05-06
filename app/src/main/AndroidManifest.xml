@@ -4,19 +4,43 @@
 
     <application
         android:name="com.skkj.bcw.blockchainwallet.App"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.skkj.bcw.blockchainwallet.ui.MainActivity">
+        android:persistent="true"
+        android:largeHeap="true"
+        android:allowBackup="true">
+        <activity
+            android:theme="@style/SplashTheme"
+            android:name="com.skkj.bcw.blockchainwallet.ui.generate_wallet.GenerateWalletActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name="com.skkj.bcw.blockchainwallet.ui.main.MainActivity"/>
+
+        <activity
+            android:name="com.skkj.bcw.blockchainwallet.ui.lead_wallet.ImportWalletActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
+            android:label="@string/title_import_wallet"
+            android:launchMode="singleTop"/>
+
+        <activity android:name="com.skkj.bcw.blockchainwallet.ui.create_wallet.CreateWalletActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
+            android:label="@string/title_create_wallet"
+            android:launchMode="singleTop"/>
+
     </application>
 
 </manifest>

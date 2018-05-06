@@ -22,6 +22,8 @@ package com.kaopiz.kprogresshud;
  * This interface only provides convenience, how progress work depends on the view implementation.
  */
 public interface Determinate {
-    void setMax(int max);
-    void setProgress(int progress);
+    void setMax(long max);
+    long getMax();
+    void setProgress(long progress);
+    long getProgress();
 }

@@ -6,8 +6,8 @@ public class Components {
     public static  AppComponent appComponent;
 
     public static void init(App application){
-            appComponent = DaggerAppComponent.builder()
-                    .appModule(new AppModule(application))
-                    .build();
+     appComponent = DaggerAppComponent.builder()
+              .appModule(new AppModule(application))
+              .build();
     }
 }

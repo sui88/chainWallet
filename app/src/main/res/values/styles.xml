@@ -1,11 +1,58 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+
+        <item name="popupMenuStyle">@style/PopupMenu</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/login</item>
+    </style>
+
+    <style name="TransAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
+    </style>
+
+    <style name="PrimaryButton" parent="@style/Widget.AppCompat.Button">
+        <item name="android:background">@drawable/selector_primary_btn</item>
+        <item name="android:textColor">@color/selector_primary_btn_text</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.Material.PopupMenu">
+        <item name="android:popupBackground">@drawable/bg_popup_menu</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:height">48dp</item>
+        <item name="fillStatusBar">false</item>
+        <item name="titleBarColor">@color/colorPrimary</item>
+        <item name="leftTextColor">@color/titleBarButtonText</item>
+        <item name="leftTextSize">@dimen/title_bar_button_text</item>
+        <item name="rightTextColor">@color/titleBarButtonText</item>
+        <item name="rightTextSize">@dimen/title_bar_button_text</item>
+        <item name="centerTextColor">@color/titleBarText</item>
+        <item name="centerTextSize">@dimen/title_bar_text</item>
+        <item name="centerSubTextColor">@color/titleBarSubText</item>
+        <item name="centerSubTextSize">@dimen/title_bar_subtext</item>
+    </style>
+
+    <style name="TabAppearance">
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

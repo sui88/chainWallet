@@ -184,7 +184,7 @@ public class KProgressHUD {
      * Optional label to be displayed.
      * @return Current HUD
      */
-    public KProgressHUD setLabel(String label) {
+    public KProgressHUD setLabel(CharSequence label) {
         mProgressDialog.setLabel(label);
         return this;
     }
@@ -229,8 +229,17 @@ public class KProgressHUD {
      * Set current progress. Only have effect when use with a determinate style, or a custom
      * view which implements Determinate interface.
      */
-    public void setProgress(int progress) {
+    public KProgressHUD setProgress(long progress) {
         mProgressDialog.setProgress(progress);
+        return this;
+    }
+
+    /**
+     * Get current progress. Only have effect when use with a determinate style, or a custom
+     * view which implements Determinate interface.
+     */
+    public long getProgress() {
+        return mProgressDialog.getProgress();
     }
 
     /**
@@ -248,17 +257,17 @@ public class KProgressHUD {
     }
 
     /**
-     * Specify whether this HUD can be cancelled by using back button (default is false)
-     *
-     * Setting a cancelable to true with this method will set a null callback,
-     * clearing any callback previously set with
-     * {@link #setCancellable(DialogInterface.OnCancelListener)}
+     * SSpecify whether this HUD can be cancelled by using back button (default is false)
      *
      * @return Current HUD
      */
     public KProgressHUD setCancellable(boolean isCancellable) {
         mProgressDialog.setCancelable(isCancellable);
-        mProgressDialog.setOnCancelListener(null);
+        return this;
+    }
+
+    public KProgressHUD setCanceledOnTouchOutside(boolean cancel) {
+        mProgressDialog.setCanceledOnTouchOutside(cancel);
         return this;
     }
 
@@ -270,12 +279,12 @@ public class KProgressHUD {
      * if you had called {@link #setCancellable(boolean)} passing false.
      *
      * @return Current HUD
-     */
+     *//*
     public KProgressHUD setCancellable(DialogInterface.OnCancelListener listener) {
         mProgressDialog.setCancelable(null != listener);
         mProgressDialog.setOnCancelListener(listener);
         return this;
-    }
+    }*/
 
     /**
      * Specify whether this HUD closes itself if progress reaches max. Default is true.
@@ -299,6 +308,28 @@ public class KProgressHUD {
         mGraceTimeMs = graceTimeMs;
         return this;
     }
+
+    public KProgressHUD setOnCancelListener(DialogInterface.OnCancelListener listener) {
+        mProgressDialog.setOnCancelListener(listener);
+        return this;
+    }
+
+    public KProgressHUD setOnShowListener(DialogInterface.OnShowListener listener) {
+        mProgressDialog.setOnShowListener(listener);
+        return this;
+    }
+
+    public KProgressHUD setOnDismissListener(DialogInterface.OnDismissListener listener) {
+        mProgressDialog.setOnDismissListener(listener);
+        return this;
+    }
+
+    public KProgressHUD setOnBackgroundClickListener(View.OnClickListener listener) {
+        mProgressDialog.setOnBackgroundClickListener(listener);
+        return this;
+    }
+
+
 
     public KProgressHUD show() {
         if (!isShowing()) {
@@ -342,14 +373,16 @@ public class KProgressHUD {
         private View mView;
 		private TextView mLabelText;
         private TextView mDetailsText;
-        private String mLabel;
-        private String mDetailsLabel;
+        private CharSequence mLabel;
+        private CharSequence mDetailsLabel;
         private FrameLayout mCustomViewContainer;
         private BackgroundLayout mBackgroundLayout;
         private int mWidth, mHeight;
         private int mLabelColor = Color.WHITE;
         private int mDetailColor = Color.WHITE;
-		
+
+        private View.OnClickListener mOnBackgroundClickListener;
+
         public ProgressDialog(Context context) {
             super(context);
         }
@@ -368,20 +401,21 @@ public class KProgressHUD {
             layoutParams.gravity = Gravity.CENTER;
             window.setAttributes(layoutParams);
 
-            setCanceledOnTouchOutside(false);
+//            setCanceledOnTouchOutside(false);
 
             initViews();
         }
 
         private void initViews() {
-            mBackgroundLayout = (BackgroundLayout) findViewById(R.id.background);
+            mBackgroundLayout = findViewById(R.id.background);
             mBackgroundLayout.setBaseColor(mWindowColor);
             mBackgroundLayout.setCornerRadius(mCornerRadius);
+            mBackgroundLayout.setOnClickListener(mOnBackgroundClickListener);
             if (mWidth != 0) {
                 updateBackgroundSize();
             }
 
-            mCustomViewContainer = (FrameLayout) findViewById(R.id.container);
+            mCustomViewContainer = findViewById(R.id.container);
             addViewToFrame(mView);
 
             if (mDeterminateView != null) {
@@ -391,9 +425,9 @@ public class KProgressHUD {
                 mIndeterminateView.setAnimationSpeed(mAnimateSpeed);
             }
 
-            mLabelText = (TextView) findViewById(com.kaopiz.kprogresshud.R.id.label);
+            mLabelText = findViewById(com.kaopiz.kprogresshud.R.id.label);
             setLabel(mLabel, mLabelColor);
-            mDetailsText = (TextView) findViewById(com.kaopiz.kprogresshud.R.id.details_label);
+            mDetailsText = findViewById(com.kaopiz.kprogresshud.R.id.details_label);
             setDetailsLabel(mDetailsLabel, mDetailColor);
         }
 
@@ -411,13 +445,20 @@ public class KProgressHUD {
             mBackgroundLayout.setLayoutParams(params);
         }
 
-        public void setProgress(int progress) {
+        public void setProgress(long progress) {
             if (mDeterminateView != null) {
                 mDeterminateView.setProgress(progress);
                 if (mIsAutoDismiss && progress >= mMaxProgress) {
                     dismiss();
                 }
             }
+        }
+
+        public long getProgress() {
+            if (mDeterminateView != null) {
+                return mDeterminateView.getProgress();
+            }
+            return 0;
         }
 
         public void setView(View view) {
@@ -436,7 +477,7 @@ public class KProgressHUD {
             }
         }
 
-        public void setLabel(String label) {
+        public void setLabel(CharSequence label) {
             mLabel = label;
             if (mLabelText != null) {
                 if (label != null) {
@@ -460,7 +501,7 @@ public class KProgressHUD {
             }
         }
 
-        public void setLabel(String label, int color) {
+        public void setLabel(CharSequence label, int color) {
             mLabel = label;
             mLabelColor = color;
             if (mLabelText != null) {
@@ -474,7 +515,7 @@ public class KProgressHUD {
             }
         }
 
-        public void setDetailsLabel(String detailsLabel, int color) {
+        public void setDetailsLabel(CharSequence detailsLabel, int color) {
             mDetailsLabel = detailsLabel;
             mDetailColor = color;
             if (mDetailsText != null) {
@@ -493,6 +534,13 @@ public class KProgressHUD {
             mHeight = height;
             if (mBackgroundLayout != null) {
                 updateBackgroundSize();
+            }
+        }
+
+        public void setOnBackgroundClickListener(View.OnClickListener listener) {
+            mOnBackgroundClickListener = listener;
+            if (mBackgroundLayout != null) {
+                mBackgroundLayout.setOnClickListener(mOnBackgroundClickListener);
             }
         }
     }
